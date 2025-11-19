@@ -27,13 +27,219 @@
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
 
-    <!-- =======================================================
-    * Template Name: Grandoria
-    * Template URL: https://bootstrapmade.com/grandoria-bootstrap-hotel-template/
-    * Updated: Jul 29 2025 with Bootstrap v5.3.7
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
+    <style>
+        .service-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 100%;
+            border: 1px solid #e9ecef;
+            background: white;
+        }
+
+            .service-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+                border-color: #007bff;
+            }
+
+        .service-image {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .service-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                transition: transform 0.3s ease;
+            }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.05);
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+            .service-features li {
+                padding: 8px 0;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .service-features i {
+                color: #007bff;
+                font-size: 1.1rem;
+            }
+
+        .btn-service {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #007bff;
+        }
+
+            .btn-service:hover {
+                background: transparent;
+                color: #007bff;
+                transform: translateY(-2px);
+            }
+
+            .btn-service.emergency {
+                background: #dc3545;
+                border-color: #dc3545;
+            }
+
+                .btn-service.emergency:hover {
+                    background: transparent;
+                    color: #dc3545;
+                }
+
+        .service-comparison {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+            .service-comparison h3 {
+                color: #2c3e50;
+                font-weight: 700;
+                margin-bottom: 30px;
+            }
+
+        .table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+            .table thead {
+                background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+                color: white;
+            }
+
+            .table th {
+                border: none;
+                padding: 20px;
+                font-weight: 600;
+                font-size: 1.1rem;
+            }
+
+            .table td {
+                padding: 20px;
+                border-color: #e9ecef;
+                vertical-align: middle;
+            }
+
+            .table tbody tr {
+                transition: all 0.3s ease;
+            }
+
+                .table tbody tr:hover {
+                    background-color: #f8f9fa;
+                    transform: scale(1.01);
+                }
+
+                .table tbody tr:nth-child(even) {
+                    background-color: #f8f9fa;
+                }
+
+                    .table tbody tr:nth-child(even):hover {
+                        background-color: #e9ecef;
+                    }
+
+        .benefit-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+            .benefit-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+            .benefit-icon i {
+                font-size: 2rem;
+                color: white;
+            }
+
+        .service-cta-banner {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 5px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+            border: 2px solid #007bff;
+        }
+
+            .btn-primary:hover {
+                background: transparent;
+                color: #007bff;
+                transform: translateY(-2px);
+            }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+            .btn-secondary:hover {
+                background: white;
+                color: #2c3e50;
+                transform: translateY(-2px);
+            }
+    </style>
+
 </head>
 
 <body class="services-page">
@@ -113,7 +319,7 @@
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-card">
                             <div class="service-image">
-                                <img src="assets/img/services/custom-orders.webp" alt="Custom Ice Orders" class="img-fluid">
+                                <img src="assets/img/ice/icebulk.webp" alt="Custom Ice Orders" class="img-fluid">
                             </div>
                             <div class="service-content">
                                 <h3>Custom Ice Orders</h3>
@@ -125,7 +331,7 @@
                                     <li><i class="bi bi-truck"></i> Tailored delivery solutions</li>
                                 </ul>
                                 <div class="service-cta">
-                                    <a href="custom-orders.html" class="btn-service">Request Custom Order</a>
+                                    <a href="bookings.html" class="btn-service">Request Custom Order</a>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +340,7 @@
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-card">
                             <div class="service-image">
-                                <img src="assets/img/services/contract-services.webp" alt="Contract Ice Supply" class="img-fluid">
+                                <img src="assets/img/ice/hospitalice.webp" alt="Contract Ice Supply" class="img-fluid">
                             </div>
                             <div class="service-content">
                                 <h3>Contract Ice Supply</h3>
@@ -146,7 +352,7 @@
                                     <li><i class="bi bi-shield-check"></i> Supply guarantee</li>
                                 </ul>
                                 <div class="service-cta">
-                                    <a href="contracts.html" class="btn-service">View Contract Options</a>
+                                    <a href="contact.html" class="btn-service">Enquire about Contract Options</a>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +361,7 @@
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
                         <div class="service-card">
                             <div class="service-image">
-                                <img src="assets/img/services/bulk-delivery.webp" alt="Bulk Ice Delivery" class="img-fluid">
+                                <img src="assets/img/ice/icetruck.webp" alt="Bulk Ice Delivery" class="img-fluid">
                             </div>
                             <div class="service-content">
                                 <h3>Bulk Ice Delivery</h3>
@@ -167,7 +373,7 @@
                                     <li><i class="bi bi-piggy-bank"></i> Bulk pricing discounts</li>
                                 </ul>
                                 <div class="service-cta">
-                                    <a href="contact.html" class="btn-service">Schedule Bulk Delivery</a>
+                                    <a href="booking.html" class="btn-service">Schedule Bulk Delivery</a>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +382,7 @@
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
                         <div class="service-card">
                             <div class="service-image">
-                                <img src="assets/img/services/emergency-service.webp" alt="24/7 Emergency Service" class="img-fluid">
+                                <img src="assets/img/ice/telephone symbol.webp" alt="24/7 Emergency Service" class="img-fluid">
                             </div>
                             <div class="service-content">
                                 <h3>24/7 Emergency Service</h3>
@@ -418,9 +624,6 @@
                 <div class="d-flex flex-column align-items-center align-items-lg-start">
                     <div>
                         © Copyright <strong><span>The Great Success</span></strong>. All Rights Reserved
-                    </div>
-                    <div class="credits">
-                        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                     </div>
                 </div>
 

@@ -27,6 +27,93 @@
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
 
+    <style>
+        .ice-type-selector {
+            margin-bottom: 15px;
+        }
+
+        .ice-type-option {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+            .ice-type-option.active {
+                background-color: #007bff;
+                color: white;
+                border-color: #007bff;
+            }
+
+        .price-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745;
+            margin: 10px 0;
+        }
+
+        .price-details {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .product-card {
+            transition: transform 0.3s ease;
+            border: 1px solid #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+            .product-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .bulk-pricing-section {
+            margin-top: 60px;
+            padding: 40px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            border: 1px solid #dee2e6;
+        }
+
+            .bulk-pricing-section h3 {
+                color: #2c3e50;
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+
+            .bulk-pricing-section p {
+                color: #6c757d;
+                font-size: 1.1rem;
+                margin-bottom: 25px;
+            }
+
+        .btn-bulk-inquiry {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+            .btn-bulk-inquiry:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+                color: white;
+            }
+    </style>
+
 </head>
 
 <body class="products-page">
@@ -70,7 +157,7 @@
                                 <li><a href="terms.html">Terms & Conditions</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
-<li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
@@ -100,54 +187,13 @@
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-                <div class="product-filters" data-aos="fade-up" data-aos-delay="200">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-lg-3 col-md-6">
-                            <label class="form-label">Price Range</label>
-                            <select class="form-select">
-                                <option>All Prices</option>
-                                <option>R20 - R50</option>
-                                <option>R50 - R100</option>
-                                <option>R100+</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <label class="form-label">Bag Size</label>
-                            <select class="form-select">
-                                <option>All Sizes</option>
-                                <option>Small (1-3KG)</option>
-                                <option>Medium (5KG)</option>
-                                <option>Large (10KG+)</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <label class="form-label">Ice Type</label>
-                            <select class="form-select">
-                                <option>All Types</option>
-                                <option>Cube Ice</option>
-                                <option>Block Ice</option>
-                                <option>Crushed Ice</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <label class="form-label">Sort By</label>
-                            <select class="form-select">
-                                <option>Popularity</option>
-                                <option>Price: Low to High</option>
-                                <option>Price: High to Low</option>
-                                <option>Size</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="products-grid" data-aos="fade-up" data-aos-delay="300">
                     <div class="row g-4">
 
                         <div class="col-xl-4 col-lg-6">
                             <div class="product-card">
                                 <div class="product-image">
-                                    <img src="assets/img/products/ice-3kg.webp" alt="3KG Premium Ice Bag" class="img-fluid">
+                                    <img src="assets/img/ice/3kg.webp" alt="3KG Premium Ice Bag" class="img-fluid">
                                     <div class="product-features">
                                         <span class="feature-badge popular">Most Popular</span>
                                         <span class="feature-badge residential">Home Use</span>
@@ -165,6 +211,16 @@
                                         </div>
                                     </div>
                                     <p class="product-description">Perfect for small gatherings, home use, and individual needs. Crystal clear ice that melts slowly to keep your drinks cold longer.</p>
+
+                                    <!-- Ice Type Selector -->
+                                    <div class="ice-type-selector">
+                                        <strong>Ice Type:</strong>
+                                        <div>
+                                            <span class="ice-type-option active" data-type="cube" data-price="25">Cube Ice</span>
+                                            <span class="ice-type-option" data-type="crushed" data-price="30">Crushed Ice</span>
+                                        </div>
+                                    </div>
+
                                     <div class="product-specs">
                                         <span><i class="bi bi-box"></i> 3KG Bag</span>
                                         <span><i class="bi bi-droplet"></i> Crystal Clear</span>
@@ -173,10 +229,11 @@
                                     <div class="product-footer">
                                         <div class="product-price">
                                             <span class="price-from">From</span>
-                                            <span class="price-amount">R25</span>
+                                            <div class="price-display">R25</div>
                                             <span class="price-period">/ bag</span>
+                                            <div class="price-details">Cube Ice - R25 | Crushed Ice - R30</div>
                                         </div>
-                                        <a href="custom-orders.html" class="btn-product-details">Order Now</a>
+                                        <a href="booking.html" class="btn-product-details">Order Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +242,7 @@
                         <div class="col-xl-4 col-lg-6">
                             <div class="product-card">
                                 <div class="product-image">
-                                    <img src="assets/img/products/ice-5kg.webp" alt="5KG Commercial Ice" class="img-fluid">
+                                    <img src="assets/img/ice/5kg.webp" alt="5KG Commercial Ice" class="img-fluid">
                                     <div class="product-features">
                                         <span class="feature-badge business">Business</span>
                                     </div>
@@ -202,6 +259,17 @@
                                         </div>
                                     </div>
                                     <p class="product-description">Ideal for small businesses, cafes, and medium-sized events. Food-grade quality ice perfect for commercial use.</p>
+
+                                    <!-- Ice Type Selector -->
+                                    <div class="ice-type-selector">
+                                        <strong>Ice Type:</strong>
+                                        <div>
+                                            <span class="ice-type-option active" data-type="cube" data-price="35">Cube Ice</span>
+                                            <span class="ice-type-option" data-type="crushed" data-price="40">Crushed Ice</span>
+                                            <span class="ice-type-option" data-type="block" data-price="45">Block Ice</span>
+                                        </div>
+                                    </div>
+
                                     <div class="product-specs">
                                         <span><i class="bi bi-box"></i> 5KG Bag</span>
                                         <span><i class="bi bi-shield-check"></i> Food Safe</span>
@@ -210,10 +278,11 @@
                                     <div class="product-footer">
                                         <div class="product-price">
                                             <span class="price-from">From</span>
-                                            <span class="price-amount">R35</span>
+                                            <div class="price-display">R35</div>
                                             <span class="price-period">/ bag</span>
+                                            <div class="price-details">Cube Ice - R35 | Crushed Ice - R40 | Block Ice - R45</div>
                                         </div>
-                                        <a href="custom-orders.html" class="btn-product-details">Order Now</a>
+                                        <a href="booking.html" class="btn-product-details">Order Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +291,7 @@
                         <div class="col-xl-4 col-lg-6">
                             <div class="product-card">
                                 <div class="product-image">
-                                    <img src="assets/img/products/ice-10kg.webp" alt="10KG Bulk Ice" class="img-fluid">
+                                    <img src="assets/img/ice/10kg.webp" alt="10KG Bulk Ice" class="img-fluid">
                                     <div class="product-features">
                                         <span class="feature-badge bulk">Bulk</span>
                                         <span class="feature-badge events">Events</span>
@@ -240,6 +309,17 @@
                                         </div>
                                     </div>
                                     <p class="product-description">Our most popular bulk option for restaurants, large events, and businesses with high ice consumption needs.</p>
+
+                                    <!-- Ice Type Selector -->
+                                    <div class="ice-type-selector">
+                                        <strong>Ice Type:</strong>
+                                        <div>
+                                            <span class="ice-type-option active" data-type="cube" data-price="45">Cube Ice</span>
+                                            <span class="ice-type-option" data-type="crushed" data-price="50">Crushed Ice</span>
+                                            <span class="ice-type-option" data-type="block" data-price="55">Block Ice</span>
+                                        </div>
+                                    </div>
+
                                     <div class="product-specs">
                                         <span><i class="bi bi-box"></i> 10KG Bag</span>
                                         <span><i class="bi bi-people"></i> Large Events</span>
@@ -248,10 +328,11 @@
                                     <div class="product-footer">
                                         <div class="product-price">
                                             <span class="price-from">From</span>
-                                            <span class="price-amount">R45</span>
+                                            <div class="price-display">R45</div>
                                             <span class="price-period">/ bag</span>
+                                            <div class="price-details">Cube Ice - R45 | Crushed Ice - R50 | Block Ice - R55</div>
                                         </div>
-                                        <a href="custom-orders.html" class="btn-product-details">Order Now</a>
+                                        <a href="booking.html" class="btn-product-details">Order Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -260,7 +341,7 @@
                         <div class="col-xl-4 col-lg-6">
                             <div class="product-card">
                                 <div class="product-image">
-                                    <img src="assets/img/products/ice-20kg.webp" alt="20KG Ice Block" class="img-fluid">
+                                    <img src="assets/img/ice/iceproductionfacility.webp" alt="20KG Ice Block" class="img-fluid">
                                     <div class="product-features">
                                         <span class="feature-badge premium">Premium</span>
                                         <span class="feature-badge industrial">Industrial</span>
@@ -278,6 +359,16 @@
                                         </div>
                                     </div>
                                     <p class="product-description">Large ice blocks perfect for fishing industry, medical facilities, and industrial applications requiring extended cooling.</p>
+
+                                    <!-- Ice Type Selector -->
+                                    <div class="ice-type-selector">
+                                        <strong>Ice Type:</strong>
+                                        <div>
+                                            <span class="ice-type-option active" data-type="block" data-price="85">Block Ice</span>
+                                            <span class="ice-type-option" data-type="cube" data-price="90">Cube Ice</span>
+                                        </div>
+                                    </div>
+
                                     <div class="product-specs">
                                         <span><i class="bi bi-box"></i> 20KG Block</span>
                                         <span><i class="bi bi-snow"></i> Long Lasting</span>
@@ -286,10 +377,11 @@
                                     <div class="product-footer">
                                         <div class="product-price">
                                             <span class="price-from">From</span>
-                                            <span class="price-amount">R85</span>
+                                            <div class="price-display">R85</div>
                                             <span class="price-period">/ block</span>
+                                            <div class="price-details">Block Ice - R85 | Cube Ice - R90</div>
                                         </div>
-                                        <a href="custom-orders.html" class="btn-product-details">Order Now</a>
+                                        <a href="booking.html" class="btn-product-details">Order Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -298,7 +390,7 @@
                         <div class="col-xl-4 col-lg-6">
                             <div class="product-card">
                                 <div class="product-image">
-                                    <img src="assets/img/products/ice-crushed.webp" alt="Crushed Ice" class="img-fluid">
+                                    <img src="assets/img/ice/icepicturebar.webp" alt="Crushed Ice" class="img-fluid">
                                     <div class="product-features">
                                         <span class="feature-badge crushed">Crushed</span>
                                     </div>
@@ -315,6 +407,16 @@
                                         </div>
                                     </div>
                                     <p class="product-description">Perfect for cocktails, smoothie bars, and display purposes. Finely crushed ice that cools quickly and looks great.</p>
+
+                                    <!-- Ice Type Selector -->
+                                    <div class="ice-type-selector">
+                                        <strong>Ice Type:</strong>
+                                        <div>
+                                            <span class="ice-type-option active" data-type="crushed" data-price="40">Crushed Ice</span>
+                                            <span class="ice-type-option" data-type="cube" data-price="45">Cube Ice</span>
+                                        </div>
+                                    </div>
+
                                     <div class="product-specs">
                                         <span><i class="bi bi-box"></i> 5KG Bag</span>
                                         <span><i class="bi bi-cup-straw"></i> Cocktails</span>
@@ -323,10 +425,11 @@
                                     <div class="product-footer">
                                         <div class="product-price">
                                             <span class="price-from">From</span>
-                                            <span class="price-amount">R40</span>
+                                            <div class="price-display">R40</div>
                                             <span class="price-period">/ bag</span>
+                                            <div class="price-details">Crushed Ice - R40 | Cube Ice - R45</div>
                                         </div>
-                                        <a href="custom-orders.html" class="btn-product-details">Order Now</a>
+                                        <a href="booking.html" class="btn-product-details">Order Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -335,7 +438,7 @@
                         <div class="col-xl-4 col-lg-6">
                             <div class="product-card">
                                 <div class="product-image">
-                                    <img src="assets/img/products/ice-cube.webp" alt="Clear Cube Ice" class="img-fluid">
+                                    <img src="assets/img/ice/icepicture1.webp" alt="Clear Cube Ice" class="img-fluid">
                                     <div class="product-features">
                                         <span class="feature-badge crystal">Crystal Clear</span>
                                         <span class="feature-badge luxury">Luxury</span>
@@ -353,6 +456,16 @@
                                         </div>
                                     </div>
                                     <p class="product-description">Premium clear cube ice perfect for high-end establishments, whiskey bars, and upscale events where presentation matters.</p>
+
+                                    <!-- Ice Type Selector -->
+                                    <div class="ice-type-selector">
+                                        <strong>Ice Type:</strong>
+                                        <div>
+                                            <span class="ice-type-option active" data-type="cube" data-price="55">Cube Ice</span>
+                                            <span class="ice-type-option" data-type="crushed" data-price="60">Crushed Ice</span>
+                                        </div>
+                                    </div>
+
                                     <div class="product-specs">
                                         <span><i class="bi bi-box"></i> 3KG Bag</span>
                                         <span><i class="bi bi-gem"></i> Crystal Clear</span>
@@ -361,10 +474,11 @@
                                     <div class="product-footer">
                                         <div class="product-price">
                                             <span class="price-from">From</span>
-                                            <span class="price-amount">R55</span>
+                                            <div class="price-display">R55</div>
                                             <span class="price-period">/ bag</span>
+                                            <div class="price-details">Cube Ice - R55 | Crushed Ice - R60</div>
                                         </div>
-                                        <a href="custom-orders.html" class="btn-product-details">Order Now</a>
+                                        <a href="booking.html" class="btn-product-details">Order Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -374,17 +488,13 @@
                 </div>
 
                 <div class="bulk-pricing-section" data-aos="fade-up" data-aos-delay="400">
-                    <div class="row align-items-center">
-                        <div class="col-lg-8">
-                            <h3>Bulk Order Discounts Available</h3>
-                            <p class="mb-0">Save more when you order in larger quantities. Contact us for custom bulk pricing and contract rates.</p>
-                        </div>
-                        <div class="col-lg-4 text-lg-end">
-                            <a href="contact.html" class="btn-bulk-inquiry">
-                                <i class="bi bi-calculator"></i>
-                                Get Bulk Quote
-                            </a>
-                        </div>
+                    <div class="container">
+                        <h3>Bulk Order Discounts Available</h3>
+                        <p>Save more when you order in larger quantities. Contact us for custom bulk pricing and contract rates.</p>
+                        <a href="contact.html" class="btn-bulk-inquiry">
+                            <i class="bi bi-calculator"></i>
+                            Get Bulk Quote
+                        </a>
                     </div>
                 </div>
 
@@ -574,6 +684,31 @@
 
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ice type selection functionality
+            const iceTypeOptions = document.querySelectorAll('.ice-type-option');
+
+            iceTypeOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    const parentCard = this.closest('.product-card');
+                    const optionsInCard = parentCard.querySelectorAll('.ice-type-option');
+
+                    // Remove active class from all options in this card
+                    optionsInCard.forEach(opt => opt.classList.remove('active'));
+
+                    // Add active class to clicked option
+                    this.classList.add('active');
+
+                    // Update price display
+                    const price = this.getAttribute('data-price');
+                    const priceDisplay = parentCard.querySelector('.price-display');
+                    priceDisplay.textContent = 'R' + price;
+                });
+            });
+        });
+    </script>
 
 </body>
 
