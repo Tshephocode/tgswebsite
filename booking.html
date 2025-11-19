@@ -69,14 +69,13 @@
                         <li><a href="about.html">About</a></li>
                         <li><a href="products.html">Products</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="suppliers.html">Suppliers</a></li>
                         <li class="dropdown">
                             <a href="#"><span>More</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                             <ul>
-                                <li><a href="custom-orders.html">Custom Orders</a></li>
-                                <li><a href="contracts.html">Contract Services</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
-                                <li><a href="booking.html" class="active">Order Ice</a></li>
+                                <li><a href="location.html">location</a></li>
+                                <li><a href="privacy.html">Privacy</a></li>
+                                <li><a href="terms.html">Terms & Conditions</a></li>
+                                <li><a href="contact.html">Contact</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li>
@@ -143,20 +142,20 @@
                                                 <label for="ice-type" class="form-label">Ice Type</label>
                                                 <select class="form-select" id="ice-type" name="ice_type" required="">
                                                     <option value="">Choose type</option>
-                                                    <option value="cube">Cube Ice</option>
-                                                    <option value="crushed">Crushed Ice</option>
-                                                    <option value="block">Block Ice</option>
                                                     <option value="crystal">Crystal Clear Ice</option>
+                                                    <option value="crushed">Crushed Ice</option>
+                                                    <option value="cube">Cube Ice</option>
+                                                    <option value="block">Block Ice</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="bag-size" class="form-label">Bag Size</label>
                                                 <select class="form-select" id="bag-size" name="bag_size" required="">
                                                     <option value="">Choose size</option>
-                                                    <option value="3kg">3KG Bag - R25</option>
-                                                    <option value="5kg">5KG Bag - R35</option>
-                                                    <option value="10kg">10KG Bag - R45</option>
-                                                    <option value="20kg">20KG Block - R85</option>
+                                                    <option value="3kg" data-price="25">3KG Bag - R25</option>
+                                                    <option value="5kg" data-price="35">5KG Bag - R35</option>
+                                                    <option value="10kg" data-price="45">10KG Bag - R45</option>
+                                                    <option value="20kg" data-price="85">20KG Block - R85</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -460,37 +459,100 @@
     <script src="assets/js/main.js"></script>
 
     <script>
-        // Price calculation functionality
+        // Price calculation functionality with ice type pricing
         document.addEventListener('DOMContentLoaded', function () {
+            const iceTypeSelect = document.getElementById('ice-type');
             const bagSizeSelect = document.getElementById('bag-size');
             const quantityInput = document.getElementById('quantity');
             const unitPriceElement = document.getElementById('unit-price');
             const displayQuantityElement = document.getElementById('display-quantity');
             const totalPriceElement = document.getElementById('total-price');
 
-            const prices = {
+            // Base prices for cube ice (3rd highest)
+            const basePrices = {
                 '3kg': 25,
                 '5kg': 35,
                 '10kg': 45,
                 '20kg': 85
             };
 
-            function calculateTotal() {
-                const selectedSize = bagSizeSelect.value;
-                const quantity = parseInt(quantityInput.value) || 0;
-                const unitPrice = prices[selectedSize] || 0;
-                const total = unitPrice * quantity;
+            // Price multipliers for different ice types
+            const priceMultipliers = {
+                'crystal': 1.4,   // Crystal Clear Ice - 40% higher (highest)
+                'crushed': 1.25,  // Crushed Ice - 25% higher (2nd highest)
+                'cube': 1.0,      // Cube Ice - base price (3rd highest)
+                'block': 0.9      // Block Ice - 10% lower (4th highest)
+            };
 
-                unitPriceElement.textContent = `R${unitPrice}`;
-                displayQuantityElement.textContent = quantity;
-                totalPriceElement.textContent = `R${total}`;
+            // Function to update bag size options based on selected ice type
+            function updateBagSizeOptions() {
+                const selectedIceType = iceTypeSelect.value;
+                const multiplier = priceMultipliers[selectedIceType] || 1.0;
+
+                // Clear existing options except the first one
+                while (bagSizeSelect.options.length > 1) {
+                    bagSizeSelect.remove(1);
+                }
+
+                // Add updated options with new prices
+                if (selectedIceType) {
+                    Object.keys(basePrices).forEach(size => {
+                        const basePrice = basePrices[size];
+                        const adjustedPrice = Math.round(basePrice * multiplier);
+                        const option = new Option(
+                            `${size.toUpperCase()} ${size === '20kg' ? 'Block' : 'Bag'} - R${adjustedPrice}`,
+                            size,
+                            false,
+                            false
+                        );
+                        option.setAttribute('data-price', adjustedPrice);
+                        bagSizeSelect.add(option);
+                    });
+                } else {
+                    // If no ice type selected, show base prices
+                    Object.keys(basePrices).forEach(size => {
+                        const basePrice = basePrices[size];
+                        const option = new Option(
+                            `${size.toUpperCase()} ${size === '20kg' ? 'Block' : 'Bag'} - R${basePrice}`,
+                            size,
+                            false,
+                            false
+                        );
+                        option.setAttribute('data-price', basePrice);
+                        bagSizeSelect.add(option);
+                    });
+                }
+
+                // Reset bag size selection and recalculate
+                bagSizeSelect.value = '';
+                calculateTotal();
             }
 
+            function calculateTotal() {
+                const selectedOption = bagSizeSelect.options[bagSizeSelect.selectedIndex];
+                const quantity = parseInt(quantityInput.value) || 0;
+
+                if (selectedOption && selectedOption.value) {
+                    const unitPrice = parseInt(selectedOption.getAttribute('data-price')) || 0;
+                    const total = unitPrice * quantity;
+
+                    unitPriceElement.textContent = `R${unitPrice}`;
+                    displayQuantityElement.textContent = quantity;
+                    totalPriceElement.textContent = `R${total}`;
+                } else {
+                    unitPriceElement.textContent = 'R0.00';
+                    displayQuantityElement.textContent = '0';
+                    totalPriceElement.textContent = 'R0.00';
+                }
+            }
+
+            // Event listeners
+            iceTypeSelect.addEventListener('change', updateBagSizeOptions);
             bagSizeSelect.addEventListener('change', calculateTotal);
             quantityInput.addEventListener('input', calculateTotal);
 
             // Initialize calculation
-            calculateTotal();
+            updateBagSizeOptions();
         });
     </script>
 
