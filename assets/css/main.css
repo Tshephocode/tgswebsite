@@ -1,10 +1,4 @@
-/**
-* Template Name: Grandoria
-* Template URL: https://bootstrapmade.com/grandoria-bootstrap-hotel-template/
-* Updated: Jul 29 2025 with Bootstrap v5.3.7
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
 
 @charset "UTF-8";
 
@@ -58,7 +52,49 @@
 :root {
   scroll-behavior: smooth;
 }
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
 
+.whatsapp-float-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+    .whatsapp-float-btn:hover {
+        background: #128C7E;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+.whatsapp-text {
+    font-size: 14px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .whatsapp-text {
+        display: none;
+    }
+
+    .whatsapp-float-btn {
+        padding: 15px;
+        border-radius: 50%;
+    }
+}
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
