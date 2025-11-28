@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $headers = "From: $customer_email";
     
-    // Uncomment to send email
-    // mail($to, $subject, $message, $headers);
+    
+    mail($to, $subject, $message, $headers);
 }
 ?>
